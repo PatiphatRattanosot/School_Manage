@@ -46,12 +46,10 @@ exports.getAllNews = async (req, res) => {
 
 //Get By type
 exports.getByType = async (req, res) => {
-    console.log(req.body);
     
-  const { type } = req.body;
   await News.findAll({
     where: {
-      newsType: type,
+      newsType: req.body.newsType,
     },
   })
     .then((data) => {

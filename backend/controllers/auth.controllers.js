@@ -71,17 +71,18 @@ exports.signin = async (req, res) => {
         message: "Invalid Password!",
       });
     }
-    const token = jwt.sign({ id: person.id }, config.secret, {
+    const token = jwt.sign({ id: person.Id }, config.secret, {
       expiresIn: 86400, // 24 hours
     });
     //add role
     const authorities = [];
     person.getRoles().then((roles) => {
       for (let i = 0; i < roles.length; i++) {
-        authorities.push(roles[i].name.toUpperCase());
+        authorities.push("ROLE_"+roles[i].name.toUpperCase());
       }
+      
       res.status(200).send({
-        id: person.id,
+        id: person.Id,
         firstname: person.firstname,
         lastname: person.lastname,
         email: person.email,

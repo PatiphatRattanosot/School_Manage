@@ -7,7 +7,6 @@ const Role = require("../models/role.models");
 exports.getAll = async (req, res) => {
     try {
         const people = await Person.findAll();
-        // ลบฟิลด์ password ออกจากข้อมูลแต่ละรายการ
         const peopleWithoutPassword = people.map(person => {
             const { password, ...personWithoutPassword } = person.dataValues;
             return personWithoutPassword;
@@ -50,7 +49,7 @@ exports.getByRole = async (req, res) => {
                 name: roles
             }
         });
-
+        
         if (foundRoles.length === 0) {
             return res.status(404).send({
                 message: "No roles found."
@@ -70,8 +69,11 @@ exports.getByRole = async (req, res) => {
                 }
             }]
         });
-
-        res.status(200).send(people);
+        const peopleWithoutPassword = people.map(person => {
+            const { password, ...personWithoutPassword } = person.dataValues;
+            return personWithoutPassword;
+        });
+        res.status(200).send(peopleWithoutPassword);
     } catch (err) {
         res.status(500).send({
             message: "Error retrieving people by role.",
@@ -83,8 +85,9 @@ exports.getByRole = async (req, res) => {
 //update Profile
 exports.updateProfile = async (req, res) => {
     const id = req.params.id;
-    await Person.update(req.body, {
-      where: { id: id },
+    await Person.update(req.body,
+     {
+      where: { Id: id },
     })
     .then((num) => {
         if (num == 1) {
@@ -98,8 +101,9 @@ exports.updateProfile = async (req, res) => {
       }
     })
     .catch((err) => {
+        
       res.status(500).send({
-        message: "Error updating Profile with id=" + id,
+        message: "Error updating Profile with id= "  + id,
       });
     })
 }
@@ -108,22 +112,22 @@ exports.updateProfile = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
     await Person.destroy({
-      where: { id: id },
+      where: { Id: id },
     })
     .then((num)=>{
         if (num == 1) {
             res.send({
-          message: "Profile was deleted successfully!",
+          message: "Person was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Profile with id=${id}. Maybe Profile was not found!`,
+          message: `Cannot delete Person with id=${id}. Maybe Person was not found!`,
         });
         }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Profile with id=" + id,
+        message: "Could not delete Person with id=" + id,
       });
     })
 }
