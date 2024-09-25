@@ -1,5 +1,5 @@
 require("dotenv").config({ path: "../.env" });
- console.log(process.env.DATABASE, process.env.dialect);
+ console.log(process.env.DATABASE, process.env.DIALECT," Log from db.config");
 module.exports = {
   HOST: process.env.HOST,
   USER: process.env.USER,

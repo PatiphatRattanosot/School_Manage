@@ -85,30 +85,12 @@ isAdminOrTeacher = (req, res, next) => {
     });
 };
 
-// //Check Student
-// isStudent = (req, res, next) => {
-//     Person.findById(req.personId).then((person) => {
-//         person.getRoles().then((roles) =>{
-//             for (let i = 0; i < roles.length; i++) {
-//                 if (roles[i].name === "student") {
-//                     next();
-//                     return;
-//                 }
-//             }
-//             res.status(403).send({message: "Require Student Role!"});
-//             return;
-//         })
-//         .catch((err) => {
-//             res.status(500).send({message: err})
-//         })
-//     })
-// }
+
 
 const authJwt = {
   verifyToken,
   isAdmin,
   isTeacher,
-  // isStudent
   isAdminOrTeacher,
 };
 module.exports = authJwt;

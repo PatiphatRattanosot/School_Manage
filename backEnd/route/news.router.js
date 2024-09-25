@@ -6,7 +6,7 @@ const { authJwt } = require("../middlewares/index");
 // Create a News
 router.post(
   "/",
-  [authJwt.verifyToken, authJwt.isTeacher],
+  [authJwt.verifyToken, authJwt.isAdminOrTeacher],
   NewsController.createNews
 );
 //Get All
