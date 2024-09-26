@@ -13,7 +13,7 @@ exports.signup = async (req, res) => {
     lastname: req.body.lastname,
     email: req.body.email,
     phone: req.body.phone,
-    ImageUrl: req.body.ImageUrl,
+    ImageUrl: req.body.ImageUrl ||"https://gitlab.com/rattanosoy/my-nft/-/raw/main/2.jpg?ref_type=heads",
     prefix: req.body.prefix,
     departmentId: req.body.departmentId,
     password: bcrypt.hashSync(req.body.password, 11),
