@@ -1,10 +1,12 @@
 import React from 'react'
 import { useAuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom';
 function Profile() {
     const {user,logout} = useAuthContext()
-    
+    const navigate = useNavigate();
     const handleLogout = () =>{
         logout()
+        navigate('/')
     }
     
     return (

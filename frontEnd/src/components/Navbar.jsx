@@ -18,19 +18,20 @@ function Navbar() {
     const menus = {
         ROLE_ADMIN: [
             { name: "หน้าหลัก", href: "/" },
-            { name: "เกี่ยวกับคณะ", href: "/" },
-            { name: "เพิ่มข่าวสาร", href: "/" },
-            { name: "เพิ่มสาขา", href: "/" },
-            { name: "เพิ่มบุคลากร", href: "/" },
+            // { name: "เกี่ยวกับคณะ", href: "/" },
+            { name: "สาขา", href: "/dashboard/department" },
+            { name: "บุคลากร", href: "/dashboard/personnel" },
         ],
         ROLE_STUDENT: [
             { name: "หน้าหลัก", href: "/" },
-            { name: "เกี่ยวกับคณะ", href: "/" },
+            // { name: "เกี่ยวกับคณะ", href: "/" },
+            { name: "บุคลากร", href: "/dashboard/personnel" },
         ],
         ROLE_TEACHER: [
             { name: "หน้าหลัก", href: "/" },
-            { name: "เกี่ยวกับคณะ", href: "/" },
-            { name: "เพิ่มข่าวสาร", href: "/" },
+            // { name: "เกี่ยวกับคณะ", href: "/" },
+            { name: "เพิ่มข่าวสาร", href: "/news/add" },
+            { name: "บุคลากร", href: "/dashboard/personnel" },
         ],
     };
 
@@ -44,7 +45,7 @@ function Navbar() {
                     <ul className="menu menu-horizontal">
                         {user && menus[user.roles[0]].map((menuItem, index) => (
                             <div key={index}>
-                                {menuItem.name === "เกี่ยวกับคณะ" ? (
+                                {/* {menuItem.name === "เกี่ยวกับคณะ" ? (
                                     <div className={`dropdown text-${theme === "dark" ? "white" : "gray-900 hover:bg-gray-100"} hover:bg-gray-700 rounded-md p-2 transition-colors duration-200`}>
                                         <label tabIndex={0} >
                                             {menuItem.name}
@@ -53,7 +54,7 @@ function Navbar() {
                                             <li><a href="/personnel">บุคลากร</a></li>
                                         </ul>
                                     </div>
-                                ) : (
+                                ) : ( */}
                                     <li>
                                         <a
                                             href={menuItem.href}
@@ -62,7 +63,7 @@ function Navbar() {
                                             {menuItem.name}
                                         </a>
                                     </li>
-                                )}
+                                {/* )} */}
                             </div>
                         ))}
                     </ul>
