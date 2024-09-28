@@ -2,10 +2,13 @@ const express =require("express");
 const router = express.Router();
 const PersonController = require("../controllers/person.controlles")
 const { authJwt } = require("../middlewares/index");
+
+//GetById
+router.get("/:id", PersonController.getById);
 //GetAll
 router.get("/", PersonController.getAll);
-//Get By Department
-router.post("/department", PersonController.getByDepartment);
+//getPersonByDepartmentAndRole
+router.post("/department", PersonController.getPersonByDepartmentAndRole);
 //Get By Role
 router.post("/role", PersonController.getByRole);
 //Update Profile
