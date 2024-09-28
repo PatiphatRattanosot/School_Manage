@@ -57,7 +57,7 @@ const route = createBrowserRouter([
                 element:<IsUser><PersonnelPage/></IsUser>
             },{
                 path:"/dashboard/personnel/edit/:id",
-                element:<IsUser><EditPersonnelPage/></IsUser>
+                element:<AdminOnly><EditPersonnelPage/></AdminOnly>
             },{
                 path:"/notallow",
                 element:<NotAllow/>
