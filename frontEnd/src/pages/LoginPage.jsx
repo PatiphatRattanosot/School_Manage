@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuthContext } from '../context/AuthContext';
 import AuthService from '../services/auth.service';
 import { useNavigate } from 'react-router-dom'
-
+import Swal from 'sweetalert2'
 function LoginPage() {
     const [user, setUser] = useState({
         email: "",
@@ -28,12 +28,7 @@ function LoginPage() {
     const handleSubmit = async () => {
         try {
             const currentUser = await AuthService.login(user.email, user.password);
-            console.log(currentUser.data);
-
             login(currentUser.data);
-            if (currentUser.status === 200) {
-                alert("200")
-            }
             setUser({
                 username: "",
                 password: "",
@@ -42,7 +37,11 @@ function LoginPage() {
             navigate("/");
         } catch (error) {
             // alert("Err")
-            console.log("err login");
+            Swal.fire({
+                title: "User Login",
+                text: error.response.data.message || error.message,
+                icon: "error",
+              });
 
         }
     };

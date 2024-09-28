@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import Carousel from '../components/Carousel'
-import NewsServices from '../services/news.service';
 import News from '../components/News';
-
+import { useNewsContext } from '../context/NewsContext';
 function HomePage() {
   const [images, setImages] = useState([]);
-  const [allNews ,setAllNews] = useState([])
-
+  const {allNews , fetchNewsByType} = useNewsContext()
   useEffect(() => {
     const getImages = async () => {
       const type = { newsType: "แนะนำ" };
-      const response = await NewsServices.getByType(type);
-      setImages(response.data);
+      const data = await fetchNewsByType(type)
+      setImages(data)
     };
-    const getAllNews = async () => {
-      const response = await NewsServices.getNews()
-      setAllNews(response.data)
-    }
-    getAllNews()
     getImages();
-  }, []);
+  }, [allNews]);
   
   return (
     <div >

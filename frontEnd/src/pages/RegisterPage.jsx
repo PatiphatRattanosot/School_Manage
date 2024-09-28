@@ -28,7 +28,6 @@ function RegisterPage() {
             console.log(register);
             
             if (register.status === 200) {
-                alert("successfully")
                 navigate("/signin")
             }
         } catch (error) {
