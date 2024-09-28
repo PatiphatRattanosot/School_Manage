@@ -7,10 +7,8 @@ const register = async (email, firstname, lastname, password) => {
 }
 
 const login = async (email, password) => {
-
+    
     const response = await api.post(`${API_URL}/signin`, { email, password });
-    console.log("AuthService", response);
-
     if (response.data.accessToken) {
         localStorage.setItem(
             "x-access-token",
