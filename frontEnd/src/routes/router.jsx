@@ -14,6 +14,7 @@ import EditPersonnelPage from "../pages/personnel/EditProfilePage";
 import NotAllow from "../components/checkpPermissions/NotAllow";
 import AdminOnly from "../components/checkpPermissions/AdminOnly";
 import AdminOrTeacher from "../components/checkpPermissions/AdminOrTeacher";
+import IsUser from "../components/checkpPermissions/IsUser";
 
 
 const route = createBrowserRouter([
@@ -32,10 +33,10 @@ const route = createBrowserRouter([
                 element: <LoginPage />
             }, {
                 path: "/profile",
-                element: <ProfilePage/>
+                element: <IsUser><ProfilePage/></IsUser>
             }, {
                 path: "/profile/edit",
-                element: <EditProfilePage/>
+                element: <IsUser><EditProfilePage/></IsUser>
             }, {
                 path: "/profile/edit/:id",
                 element: <AdminOnly><EditProfilePage/></AdminOnly>
@@ -53,10 +54,10 @@ const route = createBrowserRouter([
                 element: <AdminOnly><EditDepartmentPage/></AdminOnly>
             },{
                 path:"/dashboard/personnel",
-                element:<PersonnelPage/>
+                element:<IsUser><PersonnelPage/></IsUser>
             },{
                 path:"/dashboard/personnel/edit/:id",
-                element:<EditPersonnelPage/>
+                element:<IsUser><EditPersonnelPage/></IsUser>
             },{
                 path:"/notallow",
                 element:<NotAllow/>
